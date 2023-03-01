@@ -24,4 +24,16 @@ class M_absensi extends CI_Model {
         $query = $this->db->get();
         return $query;
     }
+
+    public function getKelasByDosen($id_dosen) {
+        $this->db->select('jadwal.ruangan as kelas');
+        $this->db->from('krs');
+        $this->db->join('mahasiswa', 'mahasiswa.id_mahasiswa = krs.id_mahasiswa', 'left');
+        $this->db->join('jadwal', 'jadwal.id_jadwal = krs.id_jadwal', 'left');
+        $this->db->where('jadwal.id_dosen', $id_dosen);
+        $this->db->group_by('jadwal.ruangan');
+
+        $query = $this->db->get();
+        return $query;
+    }
 }

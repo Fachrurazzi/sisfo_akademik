@@ -74,6 +74,20 @@ class M_mahasiswa extends CI_Model {
         return $query;
     }
 
+    public function getMahasiswaByKelas($kelas)
+    {
+        $id_dosen = $this->session->userdata('id_dosen');
+        $this->db->select('mahasiswa.id_mahasiswa id, mahasiswa.nama_kepanjangan as nama, jadwal.ruangan as kelas');
+        $this->db->from('krs');
+        $this->db->join('mahasiswa', 'mahasiswa.id_mahasiswa = krs.id_mahasiswa', 'left');
+        $this->db->join('jadwal', 'jadwal.id_jadwal = krs.id_jadwal', 'left');
+        $this->db->where('jadwal.id_dosen', $id_dosen);
+        $this->db->where('jadwal.ruangan', $kelas);
+        $this->db->group_by('mahasiswa.id_mahasiswa');
+
+        return $this->db->get()->result();
+    }
+
 
 
 }

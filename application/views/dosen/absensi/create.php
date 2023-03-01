@@ -42,7 +42,6 @@
                         <label style="color: gray;" for="kelas">Kelas</label>
                         <select class="form-control" name="kelas" id="kelas">
                           <option>--Pilih Kelas--</option>
-                          <option>--Pilih mata Kuliah--</option>
                           <?php foreach ($kelas as $k) : ?>
                             <option value="<?= $k->kelas ?>" id="kode-<?= $k->kelas ?>" data-total="<?= $k->kelas; ?>"><?= $k->kelas ?></option>
                           <?php endforeach ; ?>
@@ -101,16 +100,23 @@
             });
 
             $('#kelas').change(function() {
-              var jumlah = parseInt($("#jumlah_form").val());
-              var nextform = jumlah + 1; // Tambah 1 untuk jumlah form nya
-      $("#add_form").append("<b>Mahasiswa " + nextform + " :</b>" +
-        "<tr>" +
-        "<td class='text-center'><input type='text' name='nama[]' class='form-control' readonly></td>" +
-        "<td class='text-center'><input type='radio' name='nama[]' class='form-check-input'></td>" +
-        "<td class='text-center'><input type='radio' name='nama[]' class='form-check-input'></td>" +
-        "</tr>");
+              $.ajax({
+                method: 'get',
+                url: '<?php echo base_url('mahasiswa/mahasiswa/getMahasiswaByKelas'); ?>' +'/' + $('#kelas').val(),
+                success: function(data) {
+                  var dataParse = JSON.parse(data)
+                  for(let i =0; i < dataParse.length; i++) {
+
+                    $("#add_form").append("<b>Mahasiswa " + '' + " :</b>" +
+                      "<tr>" +
+                      "<td class='text-center'><input type='text' name='nama[]' class='form-control' value='"+dataParse[i].nama+"' readonly></td>" +
+                      "<td class='text-center'><input type='radio' name='nama[]' class='form-check-input'></td>" +
+                      "<td class='text-center'><input type='radio' name='nama[]' class='form-check-input'></td>" +
+                      "</tr>");
+                  }
+                }
+              })
       
-      $("#jumlah_form").val(nextform);         
             })
     </script>
 

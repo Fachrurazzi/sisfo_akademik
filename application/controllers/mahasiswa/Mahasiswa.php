@@ -76,6 +76,11 @@ class Mahasiswa extends CI_Controller {
         return redirect('mahasiswa/Mahasiswa');
     }
 
+    public function getMahasiswaByKelas($kelas) {
+        $result = $this->M_mahasiswa->getMahasiswaByKelas($kelas);
+        echo json_encode($result);
+    }
+
     
 
 

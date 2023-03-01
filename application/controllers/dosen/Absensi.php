@@ -28,7 +28,7 @@ class Absensi extends CI_Controller {
 		$data['semester'] = $this->M_jadwal->getAllSemester()->result();
 		$data['dosen'] = $this->M_dosen->getSession()->row_array();
 		$data['matkul'] = $this->M_matkul->getMatkulByDosen()->result();
-		$data['kelas'] = $this->M_absensi->getMhsByKelas($this->session->userdata('id_dosen'))->result();
+		$data['kelas'] = $this->M_absensi->getKelasByDosen($this->session->userdata('id_dosen'))->result();
 		$this->load->view('dosen/templates/header', $data);
         $this->load->view('dosen/templates/sidebar',$data);
 		$this->load->view('dosen/absensi/create',$data);
