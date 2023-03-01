@@ -51,23 +51,30 @@
                     </div>
                 </div>
 
-                  <div class="form-group text-center">
-                    <button type="submit" class="btn btn-success">Absensi Kehadiran</button>
-                  </div>
 
+                <div class="col-md-12">
+                  <table id='data-table' class='table table-bordered table-sm'> 
+                    <thead> 
+                      <tr> 
+                        <th colspan='1' class='text-center'>Nama</th> 
+                        <th colspan='2' class='text-center'>Absensi</th> 
+                      </tr> 
 
-                <div class="col-md-12" id="add_form">
-                  <!-- <table id="example1" class="table table-bordered table-striped" style="font-size:13px;">
-                    <thead>
-                      <tr>
-                        <th>Nama</th>
-                        <th>Absen</th>
-                      </tr>
-                    </thead>
-                  </table> -->
+                      <tr> 
+                        <th class='text-center'></th> 
+                        <th class='text-center'>Hadir</th> 
+                        <th class='text-center'>Tidak Hadir</th> 
+                      </tr> 
+                    </thead> 
+                    
+                    <tbody id="add_form"></tbody>
+                  </table>
                 </div>
 
                 <input type="hidden" id="jumlah_form" value="1">
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-success">Simpan Absensi</button>
+                  </div>
               </form>
             </div>
               <!-- /.box-body -->
@@ -96,26 +103,12 @@
             $('#kelas').change(function() {
               var jumlah = parseInt($("#jumlah_form").val());
               var nextform = jumlah + 1; // Tambah 1 untuk jumlah form nya
-      $("#add_form").append("<b>Data ke " + nextform + " :</b>" +
-        "<table>" +
+      $("#add_form").append("<b>Mahasiswa " + nextform + " :</b>" +
         "<tr>" +
-        "<td>NIS</td>" +
-        "<td><input type='text' name='nis[]' required></td>" +
-        "</tr>" +
-        "<tr>" +
-        "<td>Nama</td>" +
-        "<td><input type='text' name='nama[]' required></td>" +
-        "</tr>" +
-        "<tr>" +
-        "<td>Telepon</td>" +
-        "<td><input type='text' name='telp[]' required></td>" +
-        "</tr>" +
-        "<tr>" +
-        "<td>Alamat</td>" +
-        "<td><textarea name='alamat[]' required></textarea></td>" +
-        "</tr>" +
-        "</table>" +
-        "<br><br>");
+        "<td class='text-center'><input type='text' name='nama[]' class='form-control' readonly></td>" +
+        "<td class='text-center'><input type='radio' name='nama[]' class='form-check-input'></td>" +
+        "<td class='text-center'><input type='radio' name='nama[]' class='form-check-input'></td>" +
+        "</tr>");
       
       $("#jumlah_form").val(nextform);         
             })
