@@ -12,25 +12,22 @@
                     <table id="example1" class="table table-bordered table-striped" style="font-size:13px;">
                         <thead>
                             <th>No</th>
-                            <th>Mata Kuliah</th>
-                            <th>Tanggal</th>
-                            <th>Jurusan</th>
-                            <th>Kelas</th>
-                            <th>Aksi</th>
+                            <th>Nama</th>
+                            <th>Kehadiran</th>
                         </thead>
                         <tbody>
+                            <?php $no = 1; foreach($absensi as $abs) : ?>
                             <tr>
-                                <?php $no = 1; foreach($absensi as $ab) : ?>
                                 <td><?= $no++; ?></td>
-                                <td><?= $ab->mata_kuliah; ?></td>
-                                <td><?= format_hari_tanggal($ab->tanggal) ?></td>
-                                <td><?= $ab->nama_jurusan ?></td>
-                                <td><?= $ab->kelas ?></td>
+                                <td><?= format_hari_tanggal($abs['tanggal']); ?></td>
+                                <td><?= $abs['jurusan']; ?></td>
+                                <td><?= $abs['kelas']; ?></td>
                                 <td>
-                                    <a href="" class="btn btn-primary"> <i class="fa fa-eye"></i></a>
+                                    <a href="" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+                                    <a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                 </td>
-                                <?php endforeach; ?>
                             </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>

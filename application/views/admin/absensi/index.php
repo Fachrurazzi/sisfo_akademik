@@ -1,4 +1,4 @@
-    <!-- Main content -->
+s    <!-- Main content -->
     <section class="content">
       <!-- Small boxes (Stat box) -->
       <div class="row">
@@ -12,6 +12,7 @@
                     <table id="example1" class="table table-bordered table-striped" style="font-size:13px;">
                         <thead>
                             <th>No</th>
+                            <th>Mata Kuliah</th>
                             <th>Tanggal</th>
                             <th>Jurusan</th>
                             <th>Kelas</th>
@@ -21,6 +22,7 @@
                             <?php $no = 1; foreach($absensi as $abs) : ?>
                             <tr>
                                 <td><?= $no++; ?></td>
+                                <td><?= $abs['mata_kuliah']; ?></td>
                                 <td><?= format_hari_tanggal($abs['tanggal']); ?></td>
                                 <td><?= $abs['jurusan']; ?></td>
                                 <td><?= $abs['kelas']; ?></td>

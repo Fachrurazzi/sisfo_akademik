@@ -21,6 +21,16 @@ class M_matkul extends CI_Model {
         return $query;
     }
 
+    public function getMatkul() {
+        $this->db->select('matakuliah.id_matkul as id_matkul, matakuliah.matakuliah as mata_kuliah, dosen.id_dosen as id_dosen, dosen.nama_dosen as nama_dosen');
+        $this->db->from('matakuliah');
+        $this->db->join('jadwal', 'jadwal.id_matkul = matakuliah.id_matkul', 'left');
+        $this->db->join('dosen', 'dosen.id_dosen = jadwal.id_dosen');
+        $this->db->where('dosen.id_dosen', $this->session->userdata('id_dosen'));
+        $query = $this->db->get();
+        return $query;
+    }
+
     public function getMatkulByJurusan($id_jurusan)
     {
         $this->db->select('*');

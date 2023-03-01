@@ -22,6 +22,14 @@ class M_dosen extends CI_Model {
     }
 
 
+    public function getDataDosen() {
+        $this->db->select('*');
+        $this->db->from('dosen');
+        $this->db->where('dosen.id_dosen', $this->session->userdata('id_dosen'));
+
+        $query = $this->db->get();
+        return $query;
+    }
     //AMBIL SESSION LOGIN DARI DOSEN
     public function getSession()
     {
