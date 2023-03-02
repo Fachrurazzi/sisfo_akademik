@@ -8,7 +8,7 @@ class M_nilai extends CI_Model {
 
     public function getMhs($id_matkul)
     {
-        $this->db->select('*');
+        $this->db->select('krs.*, jadwal.*, mahasiswa.*, matakuliah.*');
         $this->db->from('krs');
         $this->db->join('jadwal', 'jadwal.id_jadwal = krs.id_jadwal','left');
         $this->db->join('matakuliah', 'matakuliah.id_matkul = jadwal.id_matkul','left');

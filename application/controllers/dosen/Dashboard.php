@@ -21,6 +21,7 @@ class Dashboard extends CI_Controller {
 		$data['totalJurusan'] = $this->M_jurusan->getTotalJurusan()->row_array();
 		$data['totalMatkul'] = $this->M_matkul->getTotalMatkul()->row_array();
 		$data['dosen'] = $this->M_dosen->getSession()->row_array();
+		$data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
 
 		$this->load->view('dosen/templates/header', $data);
 		$this->load->view('dosen/templates/sidebar', $data);

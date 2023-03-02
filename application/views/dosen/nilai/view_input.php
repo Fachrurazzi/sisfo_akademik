@@ -44,7 +44,7 @@
                             <tr>
                                 <td><?php echo $i++; ?></td>
                                 <td><?php echo $row->nim; ?></td>
-                                <td><?php echo $row->nama_kepanjangan; ?></td>
+                                <td><?php echo $row->nama_kepanjangan ?></td>
                                 <td>
                                     <input type="hidden" name="id_krs[]" value="<?php echo $row->id_krs; ?>">
                                     <input style="width: 40px;" name="nilai[]" value="<?php echo $row->nilai; ?>">
@@ -56,7 +56,10 @@
                         </table>
                         <br>
                         <p align="center">
-                        <a  href="<?php echo base_url('dosen/Nilai/getMatkul/'.$jurusan); ?>" class="btn btn-warning"> Kembali</a>
+                            <?php
+                            $url = isset($_SERVER['HTTP_REFERER']) ? htmlspecialchars($_SERVER['HTTP_REFERER']) : '';
+                            ?>
+                        <a href="<?= $url ?>" class="btn btn-warning"> Kembali</a>
                         <button class="btn btn-primary" type="submit">Simpan</button>
                         </p>
                     </form>

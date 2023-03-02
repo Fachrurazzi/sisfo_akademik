@@ -54,6 +54,42 @@
           </ul>
         </li>
 
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-archive"></i> <span>Input Nilai</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <?php foreach($tahunAjar as $ta): ?>
+            <li class="treeview">
+              <a href="#"><i class="fa fa-circle-o"></i><?= $ta->tahun ?>
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+              <?php foreach($semester as $smt): ?>
+                <?php if ($ta->tahun == $smt->tahun_ajar) : ?>
+                <li class="treeview">
+                  <a href="#"><i class="fa fa-circle-o"></i>Semester <?= $smt->semester ?> <?= $smt->smt ?>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                  </a>
+                  <ul class="treeview-menu">
+                    <li><a href="<?php echo base_url('dosen/Nilai/index/'.$smt->semester.'/'.$smt->kelas); ?>"><i class="fa fa-circle-o"></i> <?= $smt->kelas ?></a></li>
+                  </ul>
+                </li>
+                <?php endif ?>
+                <?php endforeach; ?> 
+              </ul>
+            </li>
+            <?php endforeach; ?>
+          </ul>
+        </li>
+
         <li><a href="<?php echo base_url('Login/logout'); ?>"><i class="fa fa-sign-out"></i> <span>Logout</span></a></li>
         
       </ul>

@@ -14,7 +14,7 @@
                     <tr>
                         <th style="width: 200px;"><h3>Semester</h3></th>
                         <th style="width: 20px;"> : </th>
-                        <th><h3><?php echo $detil['semester']; ?></h3></th>
+                        <th><h3><?php echo $this->uri->segment(5); ?></h3></th>
                     </tr>
                 </table>
             </div>

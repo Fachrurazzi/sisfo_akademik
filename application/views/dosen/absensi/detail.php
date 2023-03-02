@@ -2,33 +2,48 @@
     <section class="content">
       <!-- Small boxes (Stat box) -->
       <div class="row">
+        <div class="col-md-3">
+            <img style="width: 170px;" src="">
+        </div>
+        <div class="col-md-9">
+            <table>
+                <?php $i = 0; foreach($dataMahasiswa as $dm) : ?>
+                    <?php if ($i == 0) : ?>
+                <tr>
+                    <th style="width: 200px;"><h3>Kelas</h3></th>
+                    <th style="width: 20px;"> : </th>
+                    <th><h3><?php echo $dm->kelas; ?></h3></th>
+                </tr>
+                <tr>
+                    <th style="width: 200px;"><h3>Tanggal</h3></th>
+                    <th style="width: 20px;"> : </th>
+                    <th><h3><?php echo format_hari_tanggal($dm->tanggal); ?></h3></th>
+                </tr>
+                <?php endif; ?>
+                <?php $i++; ?>
+                <?php endforeach; ?>
+            </table>
+        </div>
+    </div>
+      <div class="row">
         <div class="col-xs-12">
           <?php echo $this->session->flashdata('pesan'); ?>
             <div class="box">
                 <div class="box-header"> 
-                <a href="<?=  base_url('dosen/absensi/create_absen'); ?>" class="btn btn-primary"><i class="fa fa-plus"> Absensi Kehadiran</i></a>
                 </div>
                 <div class="box-body">
                     <table id="example1" class="table table-bordered table-striped" style="font-size:13px;">
                         <thead>
                             <th>No</th>
-                            <th>Mata Kuliah</th>
-                            <th>Tanggal</th>
-                            <th>Jurusan</th>
-                            <th>Kelas</th>
-                            <th>Aksi</th>
+                            <th>Nama</th>
+                            <th>Absensi</th>
                         </thead>
                         <tbody>
-                            <?php $no = 1; foreach($absensi as $ab) : ?>
+                            <?php $no = 1; foreach($dataMahasiswa as $dm) : ?>
                             <tr>
                                 <td><?= $no++; ?></td>
-                                <td><?= $ab->mata_kuliah; ?></td>
-                                <td><?= format_hari_tanggal($ab->tanggal) ?></td>
-                                <td><?= $ab->nama_jurusan ?></td>
-                                <td><?= $ab->kelas ?></td>
-                                <td>
-                                    <a href="<?= base_url('dosen/absensi/detail').'/'.$ab->kelas ?>" class="btn btn-primary"> <i class="fa fa-eye"></i></a>
-                                </td>
+                                <td><?= $dm->nama; ?></td>
+                                <td><?= $dm->absen == 1 ? 'Hadir' : 'Tidak Hadir'; ?></td>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>

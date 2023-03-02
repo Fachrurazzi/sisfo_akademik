@@ -17,8 +17,10 @@ class Profile extends CI_Controller {
         //$data['dosen'] = $this->db->get('dosen')->row_array();
         $data['dosen'] = $this->M_dosen->getSession()->row_array();
 		$data['semester'] = $this->M_jadwal->getAllSemester()->result();
+		$data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
 		$this->load->view('dosen/templates/header', $data);
 		$this->load->view('dosen/templates/sidebar', $data);
+		
 		$this->load->view('dosen/profile', $data);
 		$this->load->view('dosen/templates/footer');
 	}

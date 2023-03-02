@@ -103,7 +103,7 @@
                     <option> --Pilih Tahun Ajaran-- </option>
                     <?php ;
                     foreach($ta as $t) { ?>
-                    <option value="<?php echo $t->id_ta; ?>"><?php echo $t->ta; ?></option>
+                    <option value="<?php echo $t->id_ta; ?>"><?php echo $t->ta.' '.$t->smt; ?></option>
                    <?php } ?>
                   </select>
                 </div>

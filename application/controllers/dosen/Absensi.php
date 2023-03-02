@@ -18,6 +18,7 @@ class Absensi extends CI_Controller {
 		$data['semester'] = $this->M_jadwal->getAllSemester()->result();
 		$data['dosen'] = $this->M_dosen->getSession()->row_array();
 		$data['absensi'] = $this->M_absensi->getAbsensi()->result();
+		$data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
 		$this->load->view('dosen/templates/header', $data);
         $this->load->view('dosen/templates/sidebar',$data);
 		$this->load->view('dosen/absensi/index',$data);
@@ -31,6 +32,7 @@ class Absensi extends CI_Controller {
 		$data['dosen'] = $this->M_dosen->getSession()->row_array();
 		$data['matkul'] = $this->M_matkul->getMatkul()->result();
 		$data['kelas'] = $this->M_absensi->getKelasByDosen($this->session->userdata('id_dosen'))->result();
+		$data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
 		$this->load->view('dosen/templates/header', $data);
         $this->load->view('dosen/templates/sidebar',$data);
 		$this->load->view('dosen/absensi/create',$data);
@@ -39,7 +41,8 @@ class Absensi extends CI_Controller {
 
 	public function save() {
 		$id_dosen = $this->session->userdata('id_dosen');
-		$tanggal = date('Y-m-d');
+		$tgl = $_POST['tanggal'];
+		$tanggal = date('Y-m-d', strtotime($tgl));
 		$data = array();
 		$mahasiswa = $this->input->post('mahasiswa');
 		$id_mahasiswa = $this->input->post('id');
@@ -68,13 +71,14 @@ class Absensi extends CI_Controller {
 	public function detail()
 	{
 		$data['title'] = '';
-		$data['subtitle'] = 'Absensi Mahasiswa';
+		$data['subtitle'] = 'Detail Absensi Mahasiswa';
 		$data['semester'] = $this->M_jadwal->getAllSemester()->result();
 		$data['dosen'] = $this->M_dosen->getSession()->row_array();
-		$data['absensi'] = $this->M_absensi->getAbsensi()->result();
+		$data['dataMahasiswa'] = $this->M_absensi->getAbsensiByKelas()->result();
+		$data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
 		$this->load->view('dosen/templates/header', $data);
         $this->load->view('dosen/templates/sidebar',$data);
-		$this->load->view('dosen/absensi/index',$data);
+		$this->load->view('dosen/absensi/detail',$data);
         $this->load->view('dosen/templates/footer');
 	}
 

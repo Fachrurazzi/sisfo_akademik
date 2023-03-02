@@ -16,7 +16,7 @@ class M_jadwal extends CI_Model {
         return $query;
     }
 
-    public function getMatkulByKelas($id_jurusan, $kelas)
+    public function getMatkulByKelas($id_jurusan, $semester, $kelas)
     {
         $this->db->select('*');
         $this->db->from('jadwal');
@@ -26,6 +26,7 @@ class M_jadwal extends CI_Model {
         $this->db->join('dosen', 'dosen.id_dosen = jadwal.id_dosen', 'left');
         $this->db->where('jadwal.id_jurusan', $id_jurusan);
         $this->db->where('jadwal.ruangan', $kelas);
+        $this->db->where('matakuliah.semester', $semester);
         $this->db->order_by('semester', 'ASC');
         $query = $this->db->get();
         return $query;
@@ -47,12 +48,22 @@ class M_jadwal extends CI_Model {
     }
 
     public function getAllSemester() {
-        $this->db->select('matakuliah.*, jadwal.ruangan as kelas');
+        $this->db->select('matakuliah.*, jadwal.ruangan as kelas, ta.ta as tahun_ajar');
         $this->db->from('matakuliah');
         $this->db->join('jadwal', 'jadwal.id_matkul = matakuliah.id_matkul', 'left');
+        $this->db->join('ta', 'jadwal.id_ta = ta.id_ta', 'left');
         $this->db->group_by('matakuliah.semester');
         $query = $this->db->get();
         return $query;
+    }
+
+    public function getTahun()
+    {
+        $this->db->select('*');
+        $this->db->from('tahun');
+        $this->db->order_by('tahun');
+        $query = $this->db->get();
+        return $query;   
     }
 
     public function getSemester($id_matkul)

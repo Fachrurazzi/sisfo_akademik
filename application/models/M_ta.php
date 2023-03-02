@@ -6,7 +6,7 @@ class M_ta extends CI_Model {
     {
         $this->db->select('*');
         $this->db->from($table);
-        $this->db->order_by('id_ta', 'DESC');
+        $this->db->order_by('id_ta', 'ASC');
         $query = $this->db->get();
         return $query;
     }

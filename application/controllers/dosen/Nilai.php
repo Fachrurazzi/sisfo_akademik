@@ -16,6 +16,7 @@ class Nilai extends CI_Controller {
 		$data['subtitle'] = 'Input Nilai Sesuai Jurusan';
         $data['jurusan'] = $this->M_jurusan->getAllDataJurusan($semester, $kelas)->result();
 		$data['semester'] = $this->M_jadwal->getAllSemester()->result();
+		$data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
 		$data['dosen'] = $this->M_dosen->getSession()->row_array();
 		$this->load->view('dosen/templates/header', $data);
         $this->load->view('dosen/templates/sidebar',$data);
@@ -23,17 +24,16 @@ class Nilai extends CI_Controller {
         $this->load->view('dosen/templates/footer');
 	}
 
-    public function getMatkul($id_jurusan, $kelas)
+    public function getMatkul($id_jurusan, $semester, $kelas)
     {   
-        $where = ['id_jurusan' => $id_jurusan];
 
         $data['title'] = 'Input Nilai';
 		$data['subtitle'] = 'Input Nilai Mat akuliah';
-        
         $data['detil'] = $this->M_jadwal->getDetil($id_jurusan)->row_array();
-		$data['matkul'] = $this->M_jadwal->getMatkulByKelas($id_jurusan, $kelas)->result();
+		$data['matkul'] = $this->M_jadwal->getMatkulByKelas($id_jurusan, $semester, $kelas)->result();
         $data['semester'] = $this->M_jadwal->getAllSemester()->result();
 		$data['dosen'] = $this->M_dosen->getSession()->row_array();
+		$data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
 		$this->load->view('dosen/templates/header', $data);
         $this->load->view('dosen/templates/sidebar',$data);
 		$this->load->view('dosen/nilai/view_list_nilai',$data);
@@ -51,6 +51,8 @@ class Nilai extends CI_Controller {
 		$data['mahasiswa'] = $this->M_nilai->getMhs($id_matkul)->result();
 		$data['semester'] = $this->M_jadwal->getAllSemester()->result();
 		$data['dosen'] = $this->M_dosen->getSession()->row_array();
+		$data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
+
 		$this->load->view('dosen/templates/header', $data);
         $this->load->view('dosen/templates/sidebar',$data);
 		$this->load->view('dosen/nilai/view_input',$data);
