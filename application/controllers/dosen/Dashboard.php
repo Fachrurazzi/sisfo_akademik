@@ -20,8 +20,8 @@ class Dashboard extends CI_Controller {
 		$data['totalDosen'] = $this->M_dosen->getTotalDosen()->row_array();
 		$data['totalJurusan'] = $this->M_jurusan->getTotalJurusan()->row_array();
 		$data['totalMatkul'] = $this->M_matkul->getTotalMatkul()->row_array();
-		$data['dosen'] = $this->M_dosen->getSession()->row_array();
 		$data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
+		$data['dosen'] = $this->M_dosen->getSession()->row_array();
 
 		$this->load->view('dosen/templates/header', $data);
 		$this->load->view('dosen/templates/sidebar', $data);

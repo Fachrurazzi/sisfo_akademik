@@ -16,6 +16,7 @@ class Ta extends CI_Controller {
 		$data['subtitle'] = 'Tahun Akademik';
         $data['ta'] = $this->M_ta->getData('ta')->result();
         $data['semester'] = $this->M_jadwal->getAllSemester()->result();
+        $data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
 		$this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar',$data);
 		$this->load->view('admin/ta/index', $data);

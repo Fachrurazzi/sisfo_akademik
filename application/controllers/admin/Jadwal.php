@@ -18,6 +18,7 @@ class Jadwal extends CI_Controller {
 		$data['subtitle'] = 'Pilih Jadwal Sesuai Jurusan';
         $data['jurusan'] = $this->M_jurusan->getData()->result();
 		$data['semester'] = $this->M_jadwal->getAllSemester()->result();
+		$data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
 		$this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar',$data);
 		$this->load->view('admin/jadwal/index',$data);
@@ -36,6 +37,7 @@ class Jadwal extends CI_Controller {
 		$data['jrsMatkul'] = $this->M_jadwal->getJrsMatkul($id_jurusan)->result();
 		$data['ta'] = $this->M_ta->getData('ta')->result();
 		$data['semester'] = $this->M_jadwal->getAllSemester()->result();
+		$data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
 		$this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar',$data);
 		$this->load->view('admin/jadwal/jadwal',$data);
@@ -86,6 +88,7 @@ class Jadwal extends CI_Controller {
 
         $data['jurusan'] = $this->M_jurusan->getData()->result();
 		$data['semester'] = $this->M_jadwal->getAllSemester()->result();
+		$data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
 		$this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar',$data);
 		$this->load->view('admin/jadwal/laporan_jadwal',$data);

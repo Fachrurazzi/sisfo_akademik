@@ -81,5 +81,37 @@ class M_absensi extends CI_Model {
 
         return $this->db->get();
     }
+
+    public function getAbsensiDosen() {
+        $this->db->select('absensi_dosen.tanggal as tanggal, dosen.nama_dosen as nama, matakuliah.matakuliah as mata_kuliah,
+        absensi_dosen.kelas as kelas, absensi_dosen.title as title, absensi_dosen.keterangan as keterangan, 
+        absensi_dosen.absen as absensi, absensi_dosen.id as id');
+        $this->db->from('absensi_dosen');
+        $this->db->join('dosen', 'dosen.id_dosen = absensi_dosen.id_dosen');
+        $this->db->join('matakuliah', 'matakuliah.id_matkul = absensi_dosen.id_matkul');
+        $this->db->where('absensi_dosen.id_dosen', $this->session->userdata('id_dosen'));
+        $this->db->order_by('tanggal', 'ASC');
+
+        return $this->db->get();
+    }
+
+    public function insertData($data, $table)
+    {
+        $this->db->insert($data, $table);
+    }
+
+    public function getAbsensiDosenById($id) {
+        $this->db->select('absensi_dosen.tanggal as tanggal, dosen.nama_dosen as nama, matakuliah.matakuliah as mata_kuliah,
+        absensi_dosen.kelas as kelas, absensi_dosen.title as title, absensi_dosen.keterangan as keterangan, 
+        absensi_dosen.absen as absensi, absensi_dosen.id as id');
+        $this->db->from('absensi_dosen');
+        $this->db->join('dosen', 'dosen.id_dosen = absensi_dosen.id_dosen');
+        $this->db->join('matakuliah', 'matakuliah.id_matkul = absensi_dosen.id_matkul');
+        $this->db->where('absensi_dosen.id_dosen', $this->session->userdata('id_dosen'));
+        $this->db->where('absensi_dosen.id', $id);
+        $this->db->order_by('tanggal', 'ASC');
+
+        return $this->db->get();
+    }
     
 }

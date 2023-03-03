@@ -27,7 +27,7 @@
                                 <td><?php echo $row->nama_jenjang; ?></td>
                                 <td><?php echo $row->nama_akreditasi; ?></td>
                                 <td>
-                                <a title="Pilih Matakuliah" href="<?php echo base_url('admin/Nilai/getMatkul/'.$row->kode.'/'. $this->uri->segment(5)) ?>" class="btn btn-sm btn-primary"><i class="fa fa-list"></i></a>
+                                <a title="Pilih Matakuliah" href="<?php echo base_url('admin/Nilai/getMatkul/'.$row->kode.'/'. $this->uri->segment(4).'/'.$this->uri->segment(5)) ?>" class="btn btn-sm btn-primary"><i class="fa fa-list"></i></a>
                              </td>
                           </tr>
                         <?php } ?>

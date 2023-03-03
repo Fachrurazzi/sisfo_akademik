@@ -21,6 +21,7 @@ class Dashboard extends CI_Controller {
 		$data['totalMatkul'] = $this->M_matkul->getTotalMatkul()->row_array();
 
 		$data['semester'] = $this->M_jadwal->getAllSemester()->result();
+		$data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
 
 		$this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar',$data);

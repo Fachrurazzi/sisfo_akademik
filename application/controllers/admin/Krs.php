@@ -21,6 +21,7 @@ class Krs extends CI_Controller {
 		//AMBIL DATA KRS DARI JADWAL MATAKULIAH BERDASARKAN JURUSAN
 		$data['getAllKRS'] = $this->M_KRS->getAllKRS()->result_array();
 		$data['semester'] = $this->M_jadwal->getAllSemester()->result();
+		$data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
 		$this->load->view('admin/templates/header', $data);
 		$this->load->view('admin/templates/sidebar', $data);
 		$this->load->view('admin/krs/krs', $data);
@@ -62,6 +63,7 @@ class Krs extends CI_Controller {
     
 
         $data['krs'] = $this->M_krs->getDetil('krs',$id)->row_array();
+		$data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
         //var_dump($data);die();
         $this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar',$data);

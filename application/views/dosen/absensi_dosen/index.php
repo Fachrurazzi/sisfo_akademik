@@ -6,25 +6,35 @@
           <?php echo $this->session->flashdata('pesan'); ?>
             <div class="box">
                 <div class="box-header"> 
-                <a href="<?=  base_url('dosen/absensi/create_absen'); ?>" class="btn btn-primary"><i class="fa fa-plus"> Absensi Kehadiran</i></a>
+                <a href="<?=  base_url('dosen/absensidosen/create_absen'); ?>" class="btn btn-primary"><i class="fa fa-plus"> Absensi Kehadiran</i></a>
                 </div>
                 <div class="box-body">
                     <table id="example1" class="table table-bordered table-striped" style="font-size:13px;">
                         <thead>
                             <th>No</th>
+                            <th>Tanggal</th>
                             <th>Nama</th>
-                            <th>Kehadiran</th>
+                            <th>Mata Kuliah</th>
+                            <th>Kelas</th>
+                            <th>Title</th>
+                            <th>Keterangan</th>
+                            <th>Absen</th>
+                            <th>Aksi</th>
                         </thead>
                         <tbody>
-                            <?php $no = 1; foreach($absensi as $abs) : ?>
+                            <?php $no = 1; foreach($absensi as $ab) : ?>
                             <tr>
-                                <td><?= $no++; ?></td>
-                                <td><?= format_hari_tanggal($abs['tanggal']); ?></td>
-                                <td><?= $abs['jurusan']; ?></td>
-                                <td><?= $abs['kelas']; ?></td>
+                                <td><?= $no++ ?></td>
+                                <td><?= format_hari_tanggal($ab->tanggal) ?></td>
+                                <td><?= $ab->nama ?></td>
+                                <td><?= $ab->mata_kuliah ?></td>
+                                <td><?= $ab->kelas ?></td>
+                                <td><?= $ab->title ?></td>
+                                <td><?= $ab->keterangan ?></td>
+                                <td><?= $ab->absensi == 1 ? 'Hadir' : 'Tidak Hadir' ?></td>
                                 <td>
-                                    <a href="" class="btn btn-primary"><i class="fa fa-eye"></i></a>
-                                    <a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                    <a href="<?= base_url('dosen/absensidosen/detail').'/'.$ab->id ?>" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>
+                                    <a href="<?= base_url('dosen/absensidosen/delete').'/'.$ab->id ?>" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

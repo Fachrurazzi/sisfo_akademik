@@ -17,6 +17,7 @@ class Dosen extends CI_Controller {
 
         $data['dosen'] = $this->M_dosen->getData()->result();
         $data['semester'] = $this->M_jadwal->getAllSemester()->result();
+        $data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
 		$this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar',$data);
 		$this->load->view('admin/dosen/index',$data);
@@ -51,6 +52,7 @@ class Dosen extends CI_Controller {
     
 
         $data['dosen'] = $this->M_dosen->getDetil('dosen',$id)->row_array();
+        $data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
         //var_dump($data);die();
         $this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar',$data);

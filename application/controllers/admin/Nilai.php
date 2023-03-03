@@ -18,13 +18,14 @@ class Nilai extends CI_Controller {
 		$data['subtitle'] = 'Input Nilai Sesuai Jurusan';
         $data['jurusan'] = $this->M_jurusan->getAllDataJurusan($semester, $kelas)->result();
 		$data['semester'] = $this->M_jadwal->getAllSemester()->result();
+		$data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
 		$this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar',$data);
 		$this->load->view('admin/nilai/index',$data);
         $this->load->view('admin/templates/footer');
 	}
 
-    public function getMatkul($id_jurusan, $kelas)
+    public function getMatkul($id_jurusan, $semester, $kelas)
     {   
         $where = ['id_jurusan' => $id_jurusan];
 
@@ -32,9 +33,10 @@ class Nilai extends CI_Controller {
 		$data['subtitle'] = 'Input Nilai Matakuliah';
         
         $data['detil'] = $this->M_jadwal->getDetil($id_jurusan)->row_array();
-		$data['matkul'] = $this->M_jadwal->getMatkulByKelas($id_jurusan, $kelas)->result();
+		$data['matkul'] = $this->M_jadwal->getMatkulByKelas($id_jurusan, $semester, $kelas)->result();
         // $data['semester'] = $this->M_jadwal->getData($id_jurusan)->row_array();
 		$data['semester'] = $this->M_jadwal->getAllSemester()->result();
+		$data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
 
 		$this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar',$data);
@@ -53,6 +55,7 @@ class Nilai extends CI_Controller {
 		$data['mahasiswa'] = $this->M_nilai->getMhs($id_matkul)->result();
 		// $data['semester'] = $this->M_jadwal->getSemester($id_matkul)->row_array();
 		$data['semester'] = $this->M_jadwal->getAllSemester()->result();
+		$data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
 		//var_dump($data['mahasiswa']);die();
 		$this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar',$data);
@@ -86,6 +89,7 @@ class Nilai extends CI_Controller {
 		$data['subtitle'] = 'Data Transkrip Nilai Mahasiswa';
         
         $data['mahasiswa'] = $this->M_mahasiswa->getData()->result();
+		$data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
 		//var_dump($data['mahasiswa']);die();
 		$this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar',$data);

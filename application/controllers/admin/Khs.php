@@ -22,6 +22,7 @@ class Khs extends CI_Controller {
 		//AMBIL DATA KRS DARI JADWAL MATAKULIAH BERDASARKAN JURUSAN
 		$data['getAllKHS'] = $this->M_KHS->getAllKHS()->result_array();
 		$data['semester'] = $this->M_jadwal->getAllSemester()->result();
+		$data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
 		$this->load->view('admin/templates/header', $data);
 		$this->load->view('admin/templates/sidebar', $data);
 		$this->load->view('admin/khs/khs', $data);

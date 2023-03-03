@@ -24,34 +24,23 @@
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
-        <li><a href="<?php echo base_url('dosen/absensi'); ?>"><i class="fa fa-calendar"></i> <span> Absensi</span></a></li>
-        <li>
-          <a href="<?php echo base_url('dosen/profile'); ?>">
-            <i class="fa fa-user"></i>
-            <span>Profile</span>
-          </a>
-        </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-archive"></i> <span>Input Nilai</span>
+            <i class="fa fa-calendar"></i> <span>Absensi</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <?php foreach($semester as $smt): ?>
-            <li class="treeview">
-              <a href="#"><i class="fa fa-circle-o"></i> Semester <?= $smt->semester ?>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="<?php echo base_url('dosen/Nilai/index/'.$smt->semester.'/'.$smt->kelas); ?>"><i class="fa fa-circle-o"></i> <?= $smt->kelas ?></a></li>
-              </ul>
-            </li>
-            <?php endforeach; ?>
+          <li><a href="<?php echo base_url('dosen/absensidosen'); ?>"><i class="fa fa-user"></i> <span> Dosen</span></a></li>
+          <li><a href="<?php echo base_url('dosen/absensi'); ?>"><i class="fa fa-users"></i> <span> Mahasiswa</span></a></li>
           </ul>
+        </li>
+        <li>
+          <a href="<?php echo base_url('dosen/profile'); ?>">
+            <i class="fa fa-user"></i>
+            <span>Profile</span>
+          </a>
         </li>
 
         <li class="treeview">

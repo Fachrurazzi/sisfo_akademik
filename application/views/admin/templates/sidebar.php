@@ -16,7 +16,6 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MENU UTAMA</li>
         <li><a href="<?php echo base_url('admin/dashboard'); ?>"><i class="fa fa-dashboard"></i> <span> Dashboard</span></a></li>
-        <li><a href="<?php echo base_url('admin/absensi'); ?>"><i class="fa fa-calendar"></i> <span> Absensi</span></a></li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-database"></i> <span>Data Master</span>
@@ -42,28 +41,40 @@
           </a>
           <ul class="treeview-menu">
           <li class="treeview">
-              <a href="#"><i class="fa fa-circle-o"></i> Input Nilai
+          <a href="#">
+            <i class="fa fa-archive"></i> <span>Input Nilai</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <?php foreach($tahunAjar as $ta): ?>
+            <li class="treeview">
+              <a href="#"><i class="fa fa-circle-o"></i><?= $ta->tahun ?>
                 <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
               </a>
               <ul class="treeview-menu">
+              <?php foreach($semester as $smt): ?>
+                <?php if ($ta->tahun == $smt->tahun_ajar) : ?>
                 <li class="treeview">
-                  <?php foreach($semester as $smt) : ?>
-                  <a href="">
-                    <i class="fa fa-circle-o"></i>Semester <?= $smt->semester ?>
-                      <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
+                  <a href="#"><i class="fa fa-circle-o"></i>Semester <?= $smt->semester ?> <?= $smt->smt ?>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
                     </span>
                   </a>
                   <ul class="treeview-menu">
                     <li><a href="<?php echo base_url('admin/Nilai/index/'.$smt->semester.'/'.$smt->kelas); ?>"><i class="fa fa-circle-o"></i> <?= $smt->kelas ?></a></li>
-                </ul>
-                  <?php endforeach; ?>
+                  </ul>
                 </li>
+                <?php endif ?>
+                <?php endforeach; ?> 
               </ul>
-
             </li>
+            <?php endforeach; ?>
+          </ul>
+        </li>
             <li><a href="<?php echo base_url('admin/krs'); ?>"><i class="fa fa-file-text-o"></i> KRS</a></li>
             <li><a href="<?php echo base_url('admin/khs'); ?>"><i class="fa fa-files-o"></i> KHS</a></li>
             <li><a href="<?php echo base_url('admin/Nilai/transkrip'); ?>"><i class="fa fa-list-alt"></i> Transkip Nilai</a></li>

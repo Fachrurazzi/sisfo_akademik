@@ -16,6 +16,7 @@ class Admin extends CI_Controller {
         $data['subtitle'] = 'Data Admin';
 
         $data['semester'] = $this->M_jadwal->getAllSemester()->result();
+        $data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
         $data['admin'] = $this->db->get('admin')->result();
         //var_dump($data);die();
 		$this->load->view('admin/templates/header', $data);
@@ -53,6 +54,7 @@ class Admin extends CI_Controller {
         $data['subtitle'] = 'Detil Data Admin';
 
         $data['admin'] = $this->db->get_where('admin', $where)->row_array();
+        $data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
 
         $this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar', $data);

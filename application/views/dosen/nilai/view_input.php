@@ -14,7 +14,7 @@
                     <tr>
                         <th><h3>Semester</h3></th>
                         <th> : </th>
-                        <th><h3><?php echo $matkul['semester'] ?></h3></th>
+                        <th><h3><?php echo $matkul['semester']; ?></h3></th>
                     </tr>
                 </table>
             </div>

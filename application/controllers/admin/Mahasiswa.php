@@ -19,6 +19,7 @@ class Mahasiswa extends CI_Controller {
 
         $data['mahasiswa'] = $this->M_mahasiswa->getData()->result();
         $data['semester'] = $this->M_jadwal->getAllSemester()->result();
+        $data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
 		$this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar',$data);
 		$this->load->view('admin/mahasiswa/index',$data);
@@ -55,6 +56,7 @@ class Mahasiswa extends CI_Controller {
     
 
         $data['mahasiswa'] = $this->M_mahasiswa->getDetil('mahasiswa',$id)->row_array();
+        $data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
         //var_dump($data);die();
         $this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar',$data);
@@ -92,6 +94,7 @@ class Mahasiswa extends CI_Controller {
         $data['subtitle'] = 'Laporan Data Mahasiswa';
 
         $data['kelas'] = $this->M_mahasiswa->getAllKelas()->result();
+        $data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
 		$this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar',$data);
 		$this->load->view('admin/mahasiswa/laporan_data_mahasiswa',$data);

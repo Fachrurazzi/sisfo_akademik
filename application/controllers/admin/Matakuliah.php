@@ -17,6 +17,7 @@ class Matakuliah extends CI_Controller {
 
         $data['matkul'] = $this->M_matkul->getData()->result();
         $data['semester'] = $this->M_jadwal->getAllSemester()->result();
+        $data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
 		$this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar',$data);
 		$this->load->view('admin/matakuliah/index',$data);
@@ -70,6 +71,7 @@ class Matakuliah extends CI_Controller {
 		$data['subtitle'] = 'Form update matakuliah';
 
         $data['matkul'] = $this->M_matkul->getUpdate('matakuliah', $where)->row_array();
+        $data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
 		$this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar',$data);
 		$this->load->view('admin/matakuliah/form_update',$data);

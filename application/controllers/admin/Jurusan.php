@@ -16,6 +16,7 @@ class Jurusan extends CI_Controller {
         $data['subtitle'] = 'Data Jurusan';
 		$data['jurusan'] = $this->M_jurusan->getData()->result();
 		$data['semester'] = $this->M_jadwal->getAllSemester()->result();
+		$data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
 		$this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar', $data);
 		$this->load->view('admin/jurusan/index',$data);
@@ -50,6 +51,7 @@ class Jurusan extends CI_Controller {
         $data['subtitle'] = 'Data Jurusan';
 
 		$data['jurusan'] = $this->M_jurusan->getUpdate('jurusan',$id)->row_array();
+		$data['tahunAjar'] = $this->M_jadwal->getTahun()->result();
 		//var_dump($data);die();
 		$this->load->view('admin/templates/header', $data);
         $this->load->view('admin/templates/sidebar', $data);
